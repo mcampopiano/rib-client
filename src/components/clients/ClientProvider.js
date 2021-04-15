@@ -11,6 +11,7 @@ export const ClientProvider = props => {
                 "Authorization": `Token ${localStorage.getItem('ribUserId')}`
             }
         })
+        .then(res => res.json())
         .then(setClients)
     }
 

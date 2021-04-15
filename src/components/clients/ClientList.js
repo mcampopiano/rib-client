@@ -11,9 +11,9 @@ export const ClientList = () => {
     return (
         <ul>
             {
-                clients.map(client => {
-                    <li>{client.name}</li>
-                })
+                clients.map(client => (
+                    <li key={client.id}>{client.name}</li>
+                ))
             }
         </ul>
     )

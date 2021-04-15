@@ -3,6 +3,7 @@ import { Login } from "./components/auth/Login";
 import { Register } from "./components/auth/Register";
 import { Redirect, Route } from "react-router";
 import { NavBar } from "./navbar";
+import { ApplicationViews } from "./components/ApplicationViews";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             return (
               <>
                 <NavBar />
+                <ApplicationViews />
               </>
             );
           } else {
