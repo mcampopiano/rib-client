@@ -16,8 +16,19 @@ export const ContractorProvider = props => {
         .then(setContractors)
     }
 
+    const createContractor = contractor => {
+        return fetch("http://localhost:8000/contractors", {
+            method: 'POST',
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('ribUserId')}`,
+                "Content-Type": "application/JSON"
+            },
+            body: JSON.stringify(contractor)
+        })
+    }
+
     return (
-        <ContractorContext.Provider value={{contractors, getContractors}}>
+        <ContractorContext.Provider value={{contractors, getContractors, createContractor}}>
             {props.children}
         </ContractorContext.Provider>
     )
