@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import {
   Collapse,
   Navbar,
@@ -7,15 +8,13 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  Button,
   NavbarText
 } from 'reactstrap';
 
 export const NavBar = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory()
 
   const toggle = () => setIsOpen(!isOpen);
 
@@ -27,13 +26,16 @@ export const NavBar = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="#">Clients</NavLink>
+              <NavLink href="/clients">Clients</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="#">Contractors</NavLink>
+              <NavLink href="/contractors">Contractors</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Log out</NavbarText>
+          <NavbarText><Button color="danger" onClick={() => {
+            localStorage.clear()
+            history.push("/")
+          }}>Log out</Button></NavbarText>
         </Collapse>
       </Navbar>
     </div>
