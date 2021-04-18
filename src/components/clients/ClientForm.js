@@ -1,25 +1,45 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { ContractorContext } from '../contractors/ContractorProvider';
+import { ClientContext } from './ClientProvider';
 
 export const ClientForm = (props) => {
+    const {createClient} = useContext(ClientContext)
+    const {getContractors, contractors} = useContext(ContractorContext)
+    const [client, setClient] = useState({"name": "", "claimNumber": "", "contractorId": 0})
+
+    const handleControlledInputChange = event => {
+        const newClient = Object.assign({}, client)
+        newClient[event.target.name] = event.target.value
+        setClient(newClient)
+    }
+
+    const constructClient = () => {
+        createClient(client)
+    }
+
+    useEffect(() => {
+        getContractors()
+    }, [])
+
   return (
     <Form>
       <FormGroup>
-        <Label for="exampleEmail">Email</Label>
-        <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
+        <Label for="name">Client full name</Label>
+        <Input type="text" name="name" id="name" placeholder="John/Jane Doh" onChange={handleControlledInputChange} />
       </FormGroup>
       <FormGroup>
-        <Label for="examplePassword">Password</Label>
-        <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
+        <Label for="claimNumber">Claim number</Label>
+        <Input type="text" name="claimNumber" id="claimNumber" onChange={handleControlledInputChange}/>
       </FormGroup>
       <FormGroup>
-        <Label for="exampleSelect">Select</Label>
-        <Input type="select" name="select" id="exampleSelect">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <Label for="contractorId">Contractor</Label>
+        <Input type="select" name="contractorId" id="contractorId" onChange={handleControlledInputChange}>
+            {
+                contractors.map(contractor => (
+                    <option>{contractor.name}</option>
+                ))
+            }
         </Input>
       </FormGroup>
       <FormGroup>
