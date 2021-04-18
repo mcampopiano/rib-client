@@ -4,6 +4,7 @@ import { ClientList } from "./clients/ClientList";
 import { ClientProvider } from "./clients/ClientProvider";
 import { ContractorList } from "./contractors/ContractorList";
 import { ContractorProvider } from "./contractors/ContractorProvider";
+import {ClientForm} from "./clients/ClientForm";
 
 export const ApplicationViews = () => {
   return (
@@ -18,6 +19,13 @@ export const ApplicationViews = () => {
               <ContractorList />
           </Route>
       </ContractorProvider>
+      <ClientProvider>
+        <ContractorProvider>
+          <Route path="/clients/form">
+            <ClientForm />
+          </Route>
+        </ContractorProvider>
+      </ClientProvider>
     </>
   );
 };
