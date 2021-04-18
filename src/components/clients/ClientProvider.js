@@ -15,8 +15,19 @@ export const ClientProvider = props => {
         .then(setClients)
     }
 
+    const createClient = client => {
+        return fetch("http://localhost:8000/clients", {
+            method: 'POST',
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('ribUserId')}`,
+                "Content-Type": "application/JSON",
+            },
+            body: JSON.stringify(client)
+        })
+    }
+
     return (
-        <ClientContext.Provider value={{getClients, clients}}>
+        <ClientContext.Provider value={{getClients, clients, createClient}}>
             {props.children}
         </ClientContext.Provider>
     )
