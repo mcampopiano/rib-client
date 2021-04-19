@@ -2,8 +2,9 @@ import { Button } from "reactstrap";
 import React, { useContext, useEffect } from "react";
 import { ClientContext } from "./ClientProvider";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
-export const ClientList = () => {
+export const ClientList = (props) => {
   const { clients, getClients } = useContext(ClientContext);
   const history = useHistory();
 
@@ -15,7 +16,9 @@ export const ClientList = () => {
     <>
       <ul>
         {clients.map((client) => (
-          <li key={client.id}>{client.name}</li>
+         <Link to={{pathname: `/clients/${client.id}`}}>
+              <li key={client.id}>{client.name}</li>
+              </Link>
         ))}
       </ul>
       <Button onClick={() => history.push("/clients/form")}>
