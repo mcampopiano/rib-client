@@ -24,6 +24,7 @@ export const ClientProvider = props => {
             },
             body: JSON.stringify(client)
         })
+        .then(getClients)
     }
 
     const getClientById = id => {
