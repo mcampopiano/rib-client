@@ -6,6 +6,7 @@ import { ContractorContext } from "./ContractorProvider"
 export const ContractorDetail = (props) => {
     const {getContractorById} = useContext(ContractorContext);
     const [contractor, setContractor] = useState({})
+    const [showDialogue, setDialogue] = useState(true)
     const id = parseInt(props.match.params.contractorId)
 
     useEffect(() => {
@@ -20,7 +21,7 @@ export const ContractorDetail = (props) => {
                     <h2>Clients</h2>
                     {
                         contractor.clients&&contractor.clients.length === 0
-                        ? <h3>You do not have any clients using this contractor</h3>
+                        ? <h3>This contractor does not have any clients yet</h3>
                         : <ul>
                 
                         {
@@ -28,8 +29,8 @@ export const ContractorDetail = (props) => {
                                if (client.user === localStorage.getItem('ribUserId')) {
                                    return <li key={client.id}><Link to={`/clients/${client.id}`}>{client.name}</Link></li>
                                }
-                           })
-                        }
+                           }) 
+                        } 
                         </ul>
                     }
                     
