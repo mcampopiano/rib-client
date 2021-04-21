@@ -21,7 +21,9 @@ export const ClientForm = (props) => {
   };
 
   const constructClient = () => {
-    createClient(client);
+    createClient(client)
+    .then(res => res.json())
+    .then(res => history.push(`/clients/${res.id}`))
   };
 
   useEffect(() => {
@@ -66,7 +68,6 @@ export const ClientForm = (props) => {
       <Button
         onClick={() => {
           constructClient();
-          history.push("/");
         }}
       >
         Submit

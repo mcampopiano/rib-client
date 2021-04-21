@@ -17,7 +17,9 @@ export const ContractorForm = (props) => {
   };
 
   const constructContractor = () => {
-    createContractor(contractor);
+    createContractor(contractor)
+    .then(res => res.json())
+    .then(res => history.push(`/contractors/${res.id}`))
   };
 
   return (
@@ -35,7 +37,6 @@ export const ContractorForm = (props) => {
       <Button
         onClick={() => {
           constructContractor();
-          history.push("/");
         }}
       >
         Submit
