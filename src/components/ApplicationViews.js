@@ -9,6 +9,7 @@ import { ContractorForm } from "./contractors/ContractorForm";
 import { ClientDetail } from "./clients/ClientDetail";
 import { RoomForm } from "./rooms/RoomForm";
 import { RoomProvider } from "./rooms/RoomProvider";
+import { ContractorDetail } from "./contractors/ContractorDetail";
 
 export const ApplicationViews = () => {
   return (
@@ -24,6 +25,10 @@ export const ApplicationViews = () => {
         <Route exact path="/contractors">
           <ContractorList />
         </Route>
+        <Route
+          path="/contractors/:contractorId(\d+)"
+          render={(props) => <ContractorDetail {...props} />}
+        />
         <Route path="/contractors/form">
           <ContractorForm />
         </Route>

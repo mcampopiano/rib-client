@@ -27,8 +27,17 @@ export const ContractorProvider = props => {
         })
     }
 
+    const getContractorById = id => {
+        return fetch(`http://localhost:8000/contractors/${id}`, {
+            headers: {
+                "Authorization": `Token ${localStorage.getItem('ribUserId')}`
+            }
+        })
+        .then(res => res.json())
+    }
+
     return (
-        <ContractorContext.Provider value={{contractors, getContractors, createContractor}}>
+        <ContractorContext.Provider value={{contractors, getContractors, createContractor, getContractorById}}>
             {props.children}
         </ContractorContext.Provider>
     )
