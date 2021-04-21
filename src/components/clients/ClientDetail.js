@@ -9,10 +9,12 @@ import {
   CardSubtitle,
   Button,
 } from "reactstrap";
+import { useHistory } from "react-router";
 
 export const ClientDetail = (props) => {
   const { getClientById } = useContext(ClientContext);
   const [client, setClient] = useState(null);
+  const history = useHistory();
   const id = parseInt(props.match.params.clientId);
 
   useEffect(() => {
@@ -44,14 +46,14 @@ export const ClientDetail = (props) => {
                       </ul>
                       <h6>Airmovers required:</h6>
                       {room.air_movers_min} - {room.air_movers_max}
-                      <h6>Dehumidifier size range</h6>
-                      {room.dehumidifier_min_size} - {room.dehumidifier_max_size}
+                      <h6>Dehumidifier size</h6>
+                      {room.dehumidifier_size}
                     </CardText>
-                    <Button>Button</Button>
                   </CardBody>
                 </Card>
               </div>
             ))}
+            <Button color="success" onClick={() => history.push(`/rooms/form/${id}`)}>Add room</Button>
           </section>
         </div>
       </>

@@ -7,6 +7,8 @@ import { ContractorProvider } from "./contractors/ContractorProvider";
 import { ClientForm } from "./clients/ClientForm";
 import { ContractorForm } from "./contractors/ContractorForm";
 import { ClientDetail } from "./clients/ClientDetail";
+import { RoomForm } from "./rooms/RoomForm";
+import { RoomProvider } from "./rooms/RoomProvider";
 
 export const ApplicationViews = () => {
   return (
@@ -36,6 +38,14 @@ export const ApplicationViews = () => {
             render={(props) => <ClientDetail {...props} />}
           />
         </ContractorProvider>
+      </ClientProvider>
+      <ClientProvider>
+        <RoomProvider>
+          <Route
+            path="/rooms/form/:clientId(\d+)"
+            render={(props) => <RoomForm {...props} />}
+          />
+        </RoomProvider>
       </ClientProvider>
     </>
   );
