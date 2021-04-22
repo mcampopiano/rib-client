@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router";
 import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import { RoomContext } from "./RoomProvider";
@@ -18,6 +18,7 @@ export const RoomForm = (props) => {
     class: 1,
   });
   const walls = []
+  const [wallsDisplay, setWallsDisplay] = useState(walls)
   const [showWalls, setShowWalls] = useState(false)
   const ceilingDamage = useRef(false);
   const damageAboveTwoFeet = useRef(true);
@@ -49,6 +50,7 @@ export const RoomForm = (props) => {
           walls: walls
       })
   }
+  
 
   return (
     <Form>
@@ -126,6 +128,14 @@ export const RoomForm = (props) => {
       </FormGroup>
       {showWalls ? (
         <section>
+          <h3>Walls</h3>
+          <ol>
+          {
+            wallsDisplay.map(wall => (
+              <li>Height: {wall.height}" Length: {wall.length}"</li>
+            ))
+          }
+          </ol>
           <FormGroup>
             <h6>Wall one dimensions</h6>
             <Label for="height">Height in feet</Label>
@@ -134,6 +144,7 @@ export const RoomForm = (props) => {
             <Input type="number" name="length" innerRef={wallOneLength}/>
             <Button onClick={() => {
                 walls.push({height: parseInt(wallOneHeight.current.value), length: parseInt(wallOneLength.current.value)})
+                setWallsDisplay(walls)
                 window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
@@ -145,6 +156,7 @@ export const RoomForm = (props) => {
             <Input type="number" name="length" innerRef={wallTwoLength}/>
             <Button onClick={() => {
                 walls.push({height: parseInt(wallTwoHeight.current.value), length: parseInt(wallTwoLength.current.value)})
+                setWallsDisplay(walls)
                 window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
@@ -156,6 +168,7 @@ export const RoomForm = (props) => {
             <Input type="number" name="length" innerRef={wallThreeLength}/>
             <Button onClick={() => {
                 walls.push({height: parseInt(wallThreeHeight.current.value), length: parseInt(wallThreeLength.current.value)})
+                setWallsDisplay(walls)
                 window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
@@ -167,6 +180,7 @@ export const RoomForm = (props) => {
             <Input type="number" name="length" innerRef={wallFourLength}/>
             <Button onClick={() => {
                 walls.push({height: parseInt(wallFourHeight.current.value), length: parseInt(wallFourLength.current.value)})
+                setWallsDisplay(walls)
                 window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
