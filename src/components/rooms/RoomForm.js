@@ -18,7 +18,7 @@ export const RoomForm = (props) => {
     class: 1,
   });
   const walls = []
-  const [wallsDisplay, setWallsDisplay] = useState(walls)
+  const [wallsDisplay, setWallsDisplay] = useState([])
   const [showWalls, setShowWalls] = useState(false)
   const ceilingDamage = useRef(false);
   const damageAboveTwoFeet = useRef(true);
@@ -145,7 +145,7 @@ export const RoomForm = (props) => {
             <Button onClick={() => {
                 walls.push({height: parseInt(wallOneHeight.current.value), length: parseInt(wallOneLength.current.value)})
                 setWallsDisplay(walls)
-                window.alert("wall added successfully")
+                // window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
           <FormGroup>
@@ -157,7 +157,7 @@ export const RoomForm = (props) => {
             <Button onClick={() => {
                 walls.push({height: parseInt(wallTwoHeight.current.value), length: parseInt(wallTwoLength.current.value)})
                 setWallsDisplay(walls)
-                window.alert("wall added successfully")
+                // window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
           <FormGroup>
@@ -169,7 +169,7 @@ export const RoomForm = (props) => {
             <Button onClick={() => {
                 walls.push({height: parseInt(wallThreeHeight.current.value), length: parseInt(wallThreeLength.current.value)})
                 setWallsDisplay(walls)
-                window.alert("wall added successfully")
+                // window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
           <FormGroup>
@@ -181,7 +181,7 @@ export const RoomForm = (props) => {
             <Button onClick={() => {
                 walls.push({height: parseInt(wallFourHeight.current.value), length: parseInt(wallFourLength.current.value)})
                 setWallsDisplay(walls)
-                window.alert("wall added successfully")
+                // window.alert("wall added successfully")
             }}>Add wall</Button>
           </FormGroup>
         </section>
